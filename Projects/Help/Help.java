@@ -1,4 +1,4 @@
-package application;
+package DSP;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -10,11 +10,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-public class Help extends Application {
+public class Help {
 
 	static Scene scene;
 
@@ -234,14 +233,6 @@ public class Help extends Application {
 		label1.setId(style);
 
 		return label1;
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
-	public void start(Stage primaryStage) throws Exception {
-		help(primaryStage);
 	}
 
 }
