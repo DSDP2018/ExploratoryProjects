@@ -1,5 +1,13 @@
 package DSP;
 
+import javafx.scene.control.Label;
+import java.util.ArrayList;
+import javafx.geometry.Pos;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
+
+
 public class LabelClass {
 
     public static Label label(String text, int boxWidth, int boxHeight, double x, double y, String style, String tip) {
@@ -36,6 +44,18 @@ public class LabelClass {
             def.setVisible(false);
             label1.setEffect(null);
         });        
+        return label1;
+    }
+   
+    public static Label label(String text, int boxWidth, int boxHeight, String style) {
+
+        Label label1 = new Label();
+        label1.setText(text);
+        label1.setAlignment(Pos.CENTER);
+        label1.setMinWidth(boxWidth);
+        label1.setMinHeight(boxHeight);
+        label1.setId(style);
+       
         return label1;
     }
 }
