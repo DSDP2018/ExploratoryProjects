@@ -1,10 +1,8 @@
 package DSP;
 
 
-import DSP.RevisionLog;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
-//import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.javafx.print.PrintHelper;
@@ -47,11 +45,6 @@ public class PrintTest{
     private static BufferedImage image;
     static Image scaled = null;
     
-//    public void print() throws AWTException {
-//        Robot robot = new Robot();
-//        BufferedImage bi = "Log.png";
-//    }
-    
     public static void printPDF() throws IOException, BadElementException, PrintException {
 
         WritableImage snapshot = RevisionLog.group.snapshot(new SnapshotParameters(), null);
@@ -66,11 +59,6 @@ public class PrintTest{
 
         System.out.println(image.getWidth() + "x" + image.getHeight());
         
-//        Constructor<Paper> c = Paper.class.getDeclaredConstructor(String.class, double.class, double.class, Units.class);
-//        c.setAccessible(true);
-//        Paper archC = c.newInstance("archc", 24, 18, Units.INCH);
-//        javafx.print.Paper archC2 = PrintHelper.createPaper("24x18", 24, 18, Units.INCH);
-        
         
         PrinterJob pj = PrinterJob.getPrinterJob();
         if (pj.printDialog()) {
@@ -82,7 +70,6 @@ public class PrintTest{
             System.out.println("PF IMAGEABLE WIDTH"+pf.getImageableWidth());
             System.out.println("PF IMAGEABLE Y"+pf.getImageableY());
             Paper paper = pf.getPaper();
-//            Paper paper = pj.defaultPage().getPaper();
 
 //                        609.6 x 457.2 = 24x18 in
             double width = fromCMToPPI(60.96);
@@ -187,6 +174,5 @@ public class PrintTest{
         }
 
     }
-   
-   
+      
 }
