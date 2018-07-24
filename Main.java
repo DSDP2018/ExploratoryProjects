@@ -7,9 +7,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -53,6 +55,16 @@ public class Main extends Application {
 		
         root.getChildren().addAll(lblSTDConfig, lblProjectID, lblRevisionNum, lblDateBorder, lblPageNum);
         
+        LineChart<Number, Number> lineChart = createChart();
+        lineChart.setMinWidth(screenWidth-120);
+        lineChart.setMinHeight(screenHeight-180);
+        //lineChart.setMinHeight(screenHeight*2/3);
+        lineChart.setLayoutX(screenProportionHeightby25*2);
+        lineChart.setLayoutY(screenProportionHeightby25+60);
+        
+        root.getChildren().add(lineChart);
+        
+        
 		Scene scene = new Scene(root);
 		
     	stage.setX(primaryScreenBounds.getMinX());
@@ -67,6 +79,68 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static LineChart<Number, Number> createChart() {
+		final NumberAxis xAxis = new NumberAxis(0, 5400, 600);
+		xAxis.setLabel("Time (in seconds)");
+		xAxis.setMinorTickVisible(false);
+		
+		final NumberAxis yAxis = new NumberAxis(-5000, 200, 200);
+		//yAxis.setLowerBound(yAxis.getUpperBound()/(-3));
+		//yAxis.setTickLabelsVisible(false);
+		//yAxis.setOpacity(0);
+
+		final LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+		lineChart.setTitle("Line Chart");
+
+		XYChart.Series<Number, Number> series1 = new XYChart.Series<>();
+		series1.setName("Ex. Line");
+		series1.getData().add(new XYChart.Data<Number, Number>(1, 23));
+		series1.getData().add(new XYChart.Data(200, 14));
+		series1.getData().add(new XYChart.Data(350, 15));
+		series1.getData().add(new XYChart.Data(490, 24));
+		series1.getData().add(new XYChart.Data(1000, 34));
+		series1.getData().add(new XYChart.Data(2500, 36));
+		series1.getData().add(new XYChart.Data(2700, 22));
+//		series1.getData().add(new XYChart.Data(8, 45));
+//		series1.getData().add(new XYChart.Data(9, 43));
+//		series1.getData().add(new XYChart.Data(10, 17));
+//		series1.getData().add(new XYChart.Data(11, 29));
+//		series1.getData().add(new XYChart.Data(12, 25));
+		
+		XYChart.Series<Number, Number> series2 = new XYChart.Series<>();
+		series2.setName("0 to -5000");
+		series2.getData().add(new XYChart.Data<Number, Number>(20, 0));
+		series2.getData().add(new XYChart.Data(200, -1400));
+		series2.getData().add(new XYChart.Data(350, -1500));
+		series2.getData().add(new XYChart.Data(490, -2400));
+		series2.getData().add(new XYChart.Data(1000, -3450));
+		series2.getData().add(new XYChart.Data(2500, -3690));
+		series2.getData().add(new XYChart.Data(2700, -2240));
+		
+		XYChart.Series<Number, Number> series3 = new XYChart.Series<>();
+		series3.setName("-40 to 150");
+		series3.getData().add(new XYChart.Data<Number, Number>(20, 0));
+		series3.getData().add(new XYChart.Data(200, -40));
+		series3.getData().add(new XYChart.Data(350, -10));
+		series3.getData().add(new XYChart.Data(490, 20));
+		series3.getData().add(new XYChart.Data(1000, 150));
+		series3.getData().add(new XYChart.Data(2500, 36));
+		series3.getData().add(new XYChart.Data(2700, 100));
+		
+		XYChart.Series<Number, Number> series4 = new XYChart.Series<>();
+		series4.setName("-1 to 1");
+		series4.getData().add(new XYChart.Data<Number, Number>(20, 0));
+		series4.getData().add(new XYChart.Data(200, -0.5));
+		series4.getData().add(new XYChart.Data(350, -1));
+		series4.getData().add(new XYChart.Data(490, 0.2));
+		series4.getData().add(new XYChart.Data(1000, 1));
+		series4.getData().add(new XYChart.Data(2500, 0.7));
+		series4.getData().add(new XYChart.Data(2700, 0.5));
+
+		lineChart.getData().addAll(series1, series2, series3, series4);
+		return lineChart;
 	}
 	
     public static Line LineBlackNoFill(double x1, int y1, double x2, int y2) {
